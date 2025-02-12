@@ -4,6 +4,7 @@ import { DashboardComponent } from './component/dashboard.component';
 import { PublicRoutes } from './public.routing';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -11,7 +12,8 @@ import { HeaderComponent } from './components/header/header.component';
   declarations: [
     DashboardComponent,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
