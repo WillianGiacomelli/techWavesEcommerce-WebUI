@@ -1,0 +1,7 @@
+<app-header />
+@if(authBehaviorService.loginFormActivated() === 'login'){
+  <app-login />
+}@else if (authBehaviorService.loginFormActivated() === 'signUp') {
+  <app-signUp />
+}
+<app-footer />

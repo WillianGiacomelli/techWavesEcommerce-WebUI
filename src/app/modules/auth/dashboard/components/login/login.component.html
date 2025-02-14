@@ -1,0 +1,25 @@
+<div class="w-full bg-white md:my-5 sm:max-w-md xl:p-0 mx-auto">
+  <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
+          Já sou cliente
+      </h1>
+      <form class="space-y-4 md:space-y-6" action="#">
+          <div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">E-mail</label>
+              <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="">
+          </div>
+          <div>
+              <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Senha</label>
+              <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="">
+          </div>
+          <div class="flex items-center justify-between">
+              <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Esqueceu a senha?</a>
+          </div>
+          <div class="py-5">
+            <button type="button" class="w-full text-white bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Logar</button>          </div>
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Não é cliente ainda? <span (click)="changeActiveForm('signUp')" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Criar conta</span>
+          </p>
+      </form>
+  </div>
+</div>
