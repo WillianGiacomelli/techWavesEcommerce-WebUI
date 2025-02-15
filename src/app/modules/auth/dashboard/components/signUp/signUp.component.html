@@ -1,51 +1,136 @@
 <div class="mx-auto items-center max-w-6xl py-4 px-4 grid grid-cols-1 md:grid-cols-3 gap-5">
+  <!-- Primeira coluna -->
   <div class="md:col-span-2 border border-gray-200 rounded-lg shadow-sm py-5 px-5">
-    <p class="text-gray-600 font-bold text-md">
-      Sobre você
-    </p>
+    <p class="text-gray-600 font-bold text-md">Sobre você</p>
     <form action="" class="px-5">
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 ">
-              <div class="py-5">
-                <label for="your_name" class="mb-2 block text-sm font-medium text-gray-900 ">Nome</label>
-                <input type="text" id="your_name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Bonnie Green" required />
-              </div>
+      <!-- Nome, Sobrenome, CPF -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div class="py-5">
+          <label for="name" class="mb-2 block text-sm font-medium text-gray-900">Nome</label>
+          <input type="text" id="name" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="André" />
+        </div>
 
-              <div class="py-5">
-                <label for="your_midd" class="mb-2 block text-sm font-medium text-gray-900 ">Sobrenome</label>
-                <input type="email" id="your_email" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="name@flowbite.com" required />
-              </div>
+        <div class="py-5">
+          <label for="lastName" class="mb-2 block text-sm font-medium text-gray-900">Sobrenome</label>
+          <input type="text" id="lastName" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Marques" />
+        </div>
+
+        <div class="py-5">
+          <label for="cpf" class="mb-2 block text-sm font-medium text-gray-900">CPF</label>
+          <input type="text" mask="000.000.000-00" id="cpf" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="999.999.999-65" />
+        </div>
       </div>
-      <div class="sex">
-        <p class="text-sm font-medium text-gray-900 pb-2">Sexo</p>
-        <div class="flex">
-          <div class="flex items-center me-4">
-              <input id="inline-radio" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+
+      <!-- Nascimento e Sexo -->
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-1">
+        <div>
+          <p class="text-sm font-medium text-gray-900 pb-2">Nascimento</p>
+          <div class="w-full">
+            <mat-form-field class="w-full border border-gray-300 rounded-lg bg-gray-50 focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500">
+              <input
+                matInput
+                [matDatepicker]="picker"
+                class="w-full py-5"
+                [max]="maxDate"
+                [min]="minDate"
+                [dropSpecialCharacters]="false"
+                mask="00/00/0000"
+                step="height:28px !important"
+              />
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="sex-group-question">
+          <p class="text-sm font-medium text-gray-900 pb-2">Sexo</p>
+          <div class="flex py-3">
+            <div class="flex items-center me-4">
+              <input
+                id="inline-radio"
+                type="radio"
+                value=""
+                name="inline-radio-group"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+              />
               <label for="inline-radio" class="ms-2 text-sm font-medium text-gray-900">Masculino</label>
-          </div>
-          <div class="flex items-center me-4">
-              <input id="inline-2-radio" type="radio" value="" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2">
+            </div>
+            <div class="flex items-center me-4">
+              <input
+                id="inline-2-radio"
+                type="radio"
+                value=""
+                name="inline-radio-group"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+              />
               <label for="inline-2-radio" class="ms-2 text-sm font-medium text-gray-900">Feminino</label>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Celular -->
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
+        <div class="py-5">
+          <label for="cellphone" class="mb-2 block text-sm font-medium text-gray-900">Número de celular</label>
+          <input type="text" mask="(00) 00000-0000" id="cellphone" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="(19)99999-9999" />
+        </div>
+      </div>
+
+      <!-- CEP, Estado, Bairro -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div class="py-5">
+          <label for="cep" class="mb-2 block text-sm font-medium text-gray-900">CEP</label>
+          <input type="text" id="cep" mask="00000-000" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="16625-206" />
+        </div>
+
+        <div class="py-5">
+          <label for="state" class="mb-2 block text-sm font-medium text-gray-900">Estado</label>
+          <input type="text" id="state" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="São Paulo" />
+        </div>
+
+        <div class="py-5">
+          <label for="neighborhood" class="mb-2 block text-sm font-medium text-gray-900">Bairro</label>
+          <input type="text" id="neighborhood" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Parque dos Amarais" />
+        </div>
+      </div>
+
+      <!-- Endereço, Número, Complemento -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div class="py-5">
+          <label for="address" class="mb-2 block text-sm font-medium text-gray-900">Endereço</label>
+          <input type="text" id="address" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Rua Jorge Afonso" />
+        </div>
+
+        <div class="py-5">
+          <label for="number" class="mb-2 block text-sm font-medium text-gray-900">Número</label>
+          <input type="text" id="number" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="460" />
+        </div>
+
+        <div class="py-5">
+          <label for="complement" class="mb-2 block text-sm font-medium text-gray-900">Complemento</label>
+          <input type="text" id="complement" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Ap. 3, torre 1, ..." />
         </div>
       </div>
     </form>
   </div>
-  <div class="border border-gray-200 rounded-lg shadow-sm py-5 px-5">
-    <p class="text-gray-600 font-bold text-md">
-      Sobre sua conta
-    </p>
+
+  <!-- Segunda coluna -->
+  <div class="border border-gray-200 rounded-lg shadow-sm py-5 px-5 self-start">
+    <p class="text-gray-600 font-bold text-md">Sobre sua conta</p>
     <form class="space-y-4 md:space-y-6 py-5" action="#">
       <div>
-          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">E-mail</label>
-          <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required="">
+        <label for="email" class="block mb-2 text-sm font-medium text-gray-900">E-mail</label>
+        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@company.com" required />
       </div>
       <div>
-          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Senha</label>
-          <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="">
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Senha</label>
+        <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required />
       </div>
       <div class="py-5">
         <button type="button" class="text-white bg-gradient-to-r from-emerald-800 via-emerald-600 to-emerald-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 dark:focus:ring-emerald-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Avançar</button>
       </div>
-  </form>
+    </form>
   </div>
 </div>
