@@ -1,5 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgxMaskService } from 'ngx-mask';
 
 @Component({
   selector: 'app-signUp',
@@ -8,13 +9,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signUp.component.scss']
 })
 export class SignUpComponent{
-  private fb:FormBuilder = inject(FormBuilder);
-
   form: FormGroup;
   maxDate: Date;
   minDate: Date;
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
     const today = new Date();
     const maxYear = today.getFullYear() - 18;
     const minYear = today.getFullYear() - 100;
@@ -24,7 +23,7 @@ export class SignUpComponent{
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.minLength(3)]],
-      cpf: ['', [Validators.required, this.validateCPF]], // Validação personalizada de CPF
+      cpf: ['', [Validators.required, this.validateCPF]],
       birthDate: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       cellphone: ['', [Validators.required]],
@@ -46,12 +45,10 @@ export class SignUpComponent{
       return { invalidCPF: true };
     }
 
-    // Verifica se todos os dígitos são iguais (ex: 111.111.111-11)
     if (/^(\d)\1{10}$/.test(cpf)) {
       return { invalidCPF: true };
     }
 
-    // Validação dos dígitos verificadores
     let sum = 0;
     let remainder;
 
@@ -86,5 +83,4 @@ export class SignUpComponent{
       console.log('Formulário inválido');
     }
   }
-
 }
