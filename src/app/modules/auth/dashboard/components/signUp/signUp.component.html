@@ -1,5 +1,5 @@
 <form [formGroup]="form" ngDefaultControl (ngSubmit)="onSubmit()" class="px-5">
-<div class="mx-auto items-center max-w-6xl py-4 px-4 grid grid-cols-1 md:grid-cols-3 gap-5">
+<div class="mx-auto items-center max-w-6xl py-4 px-4 grid grid-cols-1 md:grid-cols-3 gap-5 my-5">
   <!-- Primeira coluna -->
   <div class="md:col-span-2 border border-gray-200 rounded-lg shadow-sm py-5 px-5">
     <p class="text-gray-600 font-bold text-md">Sobre você</p>
@@ -27,7 +27,7 @@
 
         <div class="py-5">
           <label for="cpf" class="mb-2 block text-sm font-medium text-gray-900">CPF</label>
-          <input type="text" id="cpf" formControlName="cpf" mask="000.000.000-00" #cpfInput class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="999.999.999-65" />
+          <input type="text" id="cpf" formControlName="cpf" #cpfInput class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="999.999.999-65" />
           @if (form.get('cpf')?.errors?.['invalidCPF'] && form.get('cpf')?.touched) {
             <div class="text-red-500 text-sm">
               CPF inválido.
@@ -46,12 +46,9 @@
                 matInput
                 [matDatepicker]="picker"
                 formControlName="birthDate"
-                (input)="onInputBirthDate($event)"
-                (blur)="onBlurBirthDate($event)"
                 class="w-full py-5"
                 [max]="maxDate"
                 [min]="minDate"
-                mask="00/00/0000"
               />
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
@@ -100,7 +97,7 @@
       <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
         <div class="py-5">
           <label for="cellphone" class="mb-2 block text-sm font-medium text-gray-900">Número de celular</label>
-          <input type="text" id="cellphone" mask="(00) 00000-0000" formControlName="cellphone" #cellphoneInput class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="(19)99999-9999" />
+          <input type="text" id="cellphone"  formControlName="cellphone" #cellphoneInput class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="(19)99999-9999" />
           @if (form.get('cellphone')?.invalid && form.get('cellphone')?.touched) {
             <div class="text-red-500 text-sm">
               Número de celular é obrigatório.
@@ -113,7 +110,7 @@
       <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div class="py-5">
           <label for="cep" class="mb-2 block text-sm font-medium text-gray-900">CEP</label>
-          <input type="text" id="cep" formControlName="cep" #cepInput mask="00000-000"  class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="16625-206" />
+          <input type="text" id="cep" formControlName="cep" (blur)="getAddressByCEP()" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="16625-206" />
           @if (form.get('cep')?.invalid && form.get('cep')?.touched) {
             <div class="text-red-500 text-sm">
               CEP é obrigatório.
@@ -123,7 +120,7 @@
 
         <div class="py-5">
           <label for="state" class="mb-2 block text-sm font-medium text-gray-900">Estado</label>
-          <input type="text" id="state" formControlName="state" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="São Paulo" />
+          <input type="text" id="state" [disabled]="true"  formControlName="state" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="SP"/>
           @if (form.get('state')?.invalid && form.get('state')?.touched) {
             <div class="text-red-500 text-sm">
               Estado é obrigatório.
