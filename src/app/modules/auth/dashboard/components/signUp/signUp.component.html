@@ -94,7 +94,7 @@
       </div>
 
       <!-- Celular -->
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-2">
         <div class="py-5">
           <label for="cellphone" class="mb-2 block text-sm font-medium text-gray-900">Número de celular</label>
           <input type="text" id="cellphone"  formControlName="cellphone" #cellphoneInput class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="(19)99999-9999" />
@@ -129,11 +129,23 @@
         </div>
 
         <div class="py-5">
-          <label for="neighborhood" class="mb-2 block text-sm font-medium text-gray-900">Bairro</label>
-          <input type="text" id="neighborhood" formControlName="neighborhood" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Parque dos Amarais" />
-          @if (form.get('neighborhood')?.invalid && form.get('neighborhood')?.touched) {
+          <label for="city" class="mb-2 block text-sm font-medium text-gray-900">Cidade</label>
+          <input type="text" id="city" formControlName="city" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="São Paulo" />
+          @if (form.get('city')?.invalid && form.get('city')?.touched) {
             <div class="text-red-500 text-sm">
-              Bairro é obrigatório.
+              Cidade é obrigatória.
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-1">
+        <div class="py-5">
+          <label for="address" class="mb-2 block text-sm font-medium text-gray-900">Endereço</label>
+          <input type="text" id="address" formControlName="address" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Rua Jorge Afonso" />
+          @if (form.get('address')?.invalid && form.get('address')?.touched) {
+            <div class="text-red-500 text-sm">
+              Endereço é obrigatório.
             </div>
           }
         </div>
@@ -142,11 +154,11 @@
       <!-- Endereço, Número, Complemento -->
       <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div class="py-5">
-          <label for="address" class="mb-2 block text-sm font-medium text-gray-900">Endereço</label>
-          <input type="text" id="address" formControlName="address" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Rua Jorge Afonso" />
-          @if (form.get('address')?.invalid && form.get('address')?.touched) {
+          <label for="neighborhood" class="mb-2 block text-sm font-medium text-gray-900">Bairro</label>
+          <input type="text" id="neighborhood" formControlName="neighborhood" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500" placeholder="Parque dos Amarais" />
+          @if (form.get('neighborhood')?.invalid && form.get('neighborhood')?.touched) {
             <div class="text-red-500 text-sm">
-              Endereço é obrigatório.
+              Bairro é obrigatório.
             </div>
           }
         </div>

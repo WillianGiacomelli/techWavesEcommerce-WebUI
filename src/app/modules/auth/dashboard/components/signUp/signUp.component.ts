@@ -34,6 +34,7 @@ export class SignUpComponent{
         gender: ['', [Validators.required]],
         cellphone: ['', [Validators.required]],
         cep: ['', [Validators.required]],
+        city: ['', [Validators.required]],
         state: ['', [Validators.required]],
         neighborhood: ['', [Validators.required]],
         address: ['', [Validators.required]],
@@ -50,6 +51,9 @@ export class SignUpComponent{
       this.applyCepMask();
 
       this.form.controls['state'].disable();
+      this.form.controls['city'].disable();
+      this.form.controls['neighborhood'].disable();
+      this.form.controls['neighborhood'].disable();
     }
 
 
@@ -174,7 +178,7 @@ export class SignUpComponent{
     public getAddressByCEP(): void {
       const cep = this.form.get('cep')?.value;
 
-      if(cep.length != 9) return;
+      if(cep.length != 9 || (!!this.form.get('state')?.value)) return;
 
       this._cepHttpService.getAdrressByCEP(cep)
       .subscribe({
@@ -185,6 +189,7 @@ export class SignUpComponent{
             }
             this.form.patchValue({
               state: data.uf,
+              city: data.localidade,
               neighborhood: data.bairro,
               address: data.logradouro,
               complement: data.complemento
