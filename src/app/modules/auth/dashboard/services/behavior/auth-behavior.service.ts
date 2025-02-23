@@ -5,6 +5,6 @@ import { Injectable, signal, WritableSignal } from '@angular/core';
 })
 export class AuthBehaviorService {
   public loginFormActivated: WritableSignal<'login' | 'signUp' | 'forgotPass'> = signal('login');
-  
+
   constructor() { }
 }

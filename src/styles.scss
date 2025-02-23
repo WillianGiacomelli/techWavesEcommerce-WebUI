@@ -1,1 +1,24 @@
 @use "tailwindcss";
+@use 'ngx-toastr/toastr';
+
+mat-calendar{
+  background-color: #fff !important;
+}
+
+.mdc-line-ripple::before, .mdc-line-ripple::after{
+  border-bottom-width: 0px !important;
+  border-bottom-style: none !important;
+}
+
+.mat-mdc-form-field-infix{
+  min-height: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix{
+  padding-top: 10px !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper{
+  height: 0 !important;
+}
