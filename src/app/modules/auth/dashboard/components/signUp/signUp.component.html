@@ -42,7 +42,7 @@
           <p class="text-sm font-medium text-gray-900 pb-2">Nascimento</p>
           <div class="w-full">
             <mat-form-field ngDefaultControl class="w-full border border-gray-300 rounded-lg bg-gray-50 focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500">
-              <input matInput [matDatepicker]="picker" formControlName="birthDate" class="w-full py-5" [max]="maxDate" [min]="minDate" (blur)="adjustData()" />
+              <input matInput [matDatepicker]="picker" appDateOnlyDirective formControlName="birthDate" class="w-full py-5" [max]="maxDate" [min]="minDate" (blur)="adjustData()" />
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>

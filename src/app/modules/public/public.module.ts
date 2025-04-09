@@ -7,6 +7,8 @@ import { HeaderComponent } from './components/header/component/header.component'
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/component/body.component';
 import { ProductComponent } from './components/body/components/product/product.component';
+import { CartComponent } from './components/cart/cart.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -17,11 +19,13 @@ import { ProductComponent } from './components/body/components/product/product.c
     NavbarComponent,
     FooterComponent,
     BodyComponent,
-    ProductComponent
+    ProductComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,
-    PublicRoutes
+    PublicRoutes,
+    SharedModule
   ]
 })
 export class PublicModule { }
