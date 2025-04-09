@@ -6,8 +6,8 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgxMaskService } from 'ngx-mask';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DateOnlyDirectiveDirective } from '../../../../../core/directives/DateOnlyDirective.directive';
 import { CepHttpService } from '../../services/http/cep-http.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -42,7 +42,7 @@ export class SignUpComponent {
       cellphone: ['', [Validators.required]],
       cep: ['', [Validators.required]],
       city: [{ value: '', disabled: true }, [Validators.required]],
-      state: [{ value: '', disabled: true }, , [Validators.required]],
+      state: [{ value: '', disabled: true }, [Validators.required]],
       neighborhood: [{ value: '', disabled: true }, [Validators.required]],
       address: ['', [Validators.required]],
       number: ['', [Validators.required]],
