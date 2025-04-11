@@ -8,11 +8,6 @@ import { Router } from '@angular/router';
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-  constructor(private _router: Router){
+  public isThereAnyItemInCart: boolean = true;
 
-  }
-
-  public navigateToHome():void{
-    this._router.navigate([""]);
-  }
 }
