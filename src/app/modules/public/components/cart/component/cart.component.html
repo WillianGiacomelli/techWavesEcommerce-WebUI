@@ -55,14 +55,62 @@
         </div>
         <div class="mt-5">
           <label for="deliver" class="mb text-xl font-medium text-gray-900 block">Consultar frete</label>
-          <input type="deliver" name="deliver" id="deliver" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 w-75 p-2.5" placeholder="Digite o CEP" required="">
-          <button type="button" class=" ml-5 inline py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Buscar CEP</button>
+          <input
+            type="deliver"
+            name="deliver"
+            id="deliver"
+            class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 w-75 p-2.5"
+            placeholder="Digite o CEP"
+            >
+          <button
+            type="button"
+            class="cursor-pointer sm:ml-1 md:ml-5 md:inline md:w-50 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">
+              Buscar CEP
+          </button>
         </div>
       </div>
       <div class="md:col-span-1 border border-gray-200 rounded-lg shadow-sm py-5 px-5 self-start">
         <p class="text-gray-600 font-bold text-md">
           Sua compra
         </p>
+        <div class="mt-5">
+          <div class="flex items-center justify-between">
+            <p class="text-gray-900 font-bold text-md">
+              Subtotal(3 itens):
+            </p>
+            <span>R$9000</span>
+          </div>
+          <hr class="h-px my-5 bg-gray-200 border-0">
+          <div class="flex items-center justify-between">
+            <p class="text-gray-900 font-bold text-md">
+              Frete:
+            </p>
+            <span>R$20</span>
+          </div>
+          <hr class="h-px my-5 bg-gray-200 border-0">
+          <div class="flex items-center justify-between">
+            <p class="text-gray-900 font-bold text-md">
+              Cupom de desconto
+            </p>
+            adicionar
+          </div>
+          <hr class="h-px my-5 bg-gray-200 border-0">
+          <div class="flex items-center justify-between">
+            <p class="text-gray-900 font-bold text-md">
+              Valor total:
+            </p>
+            <span>R$9000</span>
+          </div>
+          <div class="py-5">
+            <button type="submit" class="cursor-pointer w-full text-white bg-gradient-to-r from-emerald-800 via-emerald-600 to-emerald-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Finalizar</button>
+            <button
+              (click)="navigateToHome()"
+              type="button"
+              class="cursor-pointer w-full py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">
+                Escolher mais produtos
+            </button>
+            </div>
+        </div>
       </div>
     </div>
   }@else {

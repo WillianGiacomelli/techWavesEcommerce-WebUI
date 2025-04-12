@@ -10,4 +10,10 @@ import { Router } from '@angular/router';
 export class CartComponent {
   public isThereAnyItemInCart: boolean = true;
 
+  constructor(private _router: Router)
+  {}
+
+  public navigateToHome():void{
+    this._router.navigate([""]);
+  }
 }
