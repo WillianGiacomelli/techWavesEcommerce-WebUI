@@ -1,10 +1,13 @@
+<app-main-section />
 <div class="mx-auto items-center max-w-6xl py-4 px-4">
   <div class="headphones">
     <h1 class="font-bold text-xl py-5">
       Headphones escolhidos para você
     </h1>
     <div class="py-5">
-      <app-product />
+      @for(product of products; track product.id){
+        <app-product [product]="product"/>
+      }
     </div>
   </div>
 </div>

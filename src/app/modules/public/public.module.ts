@@ -10,6 +10,7 @@ import { ProductComponent } from './components/body/components/product/product.c
 import { CartComponent } from './components/cart/component/cart.component';
 import { SharedModule } from '../../shared/shared.module';
 import { EmptyCartComponent } from './components/cart/components/empty-cart/empty-cart.component';
+import { MainSectionComponent } from './components/header/components/main/main-section.component';
 
 
 
@@ -22,12 +23,13 @@ import { EmptyCartComponent } from './components/cart/components/empty-cart/empt
     BodyComponent,
     ProductComponent,
     CartComponent,
-    EmptyCartComponent
+    EmptyCartComponent,
+    MainSectionComponent
   ],
   imports: [
     CommonModule,
     PublicRoutes,
-    SharedModule
-  ]
+    SharedModule,
+],
 })
 export class PublicModule { }
