@@ -17,7 +17,6 @@ export class CartBehaviorService {
     if (productExists) return;
 
     this._productsAdded.set([...products, product]);
-    console.log('Produtos no carrinho:', this._productsAdded());
   }
   constructor() { }
 

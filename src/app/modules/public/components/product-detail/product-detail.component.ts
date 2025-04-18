@@ -21,7 +21,6 @@ export class ProductDetailComponent implements OnInit {
       });
       if(this.productService.getProductSelected()){
         this.product = this.productService.getProductSelected();
-        console.log(this.product);
       }
     }
 
