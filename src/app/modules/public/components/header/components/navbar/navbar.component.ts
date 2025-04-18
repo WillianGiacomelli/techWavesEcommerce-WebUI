@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CartBehaviorService } from '../../../../state/cart.service';
 
 @Component({
   selector: 'app-public-navbar',
@@ -7,8 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  isMenuOpen = false;
-  isDropdownOpened = false;
+  public isMenuOpen = false;
+  public isDropdownOpened = false;
+  public cartService = inject(CartBehaviorService);
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

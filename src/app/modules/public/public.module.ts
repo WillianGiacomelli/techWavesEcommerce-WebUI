@@ -11,6 +11,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { EmptyCartComponent } from './components/cart/components/empty-cart/empty-cart.component';
 import { MainSectionComponent } from './components/header/components/main/main-section.component';
 import { ProductCardComponent } from './components/body/components/product/product-card.component';
+import { CartBehaviorService } from './state/cart.service';
+import { ProducBehaviorService } from './state/product.service';
 
 
 
@@ -30,6 +32,10 @@ import { ProductCardComponent } from './components/body/components/product/produ
     CommonModule,
     PublicRoutes,
     SharedModule,
-],
+  ],
+  providers: [
+    CartBehaviorService,
+    ProducBehaviorService
+  ]
 })
 export class PublicModule { }

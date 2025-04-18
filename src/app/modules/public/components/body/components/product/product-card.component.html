@@ -1,10 +1,8 @@
 <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-  <a (click)="navigateToProduct(product.id)">
+  <a (click)="navigateToProduct(product.id)" class="cursor-pointer">
     <img class="rounded-t-lg" src={{product.image}} alt="" />
     <div class="p-5">
-      <a href="#">
-        <h5 class="text-xl font-semibold tracking-tight text-gray-600 py-3">{{product.title}}</h5>
-      </a>
+      <h5 class="text-xl font-semibold tracking-tight text-gray-600 py-3">{{product.title}}</h5>
       <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{product.description}}</p>
       <div class="flex items-center mt-2.5 mb-5">
         <div class="flex items-center space-x-1 rtl:space-x-reverse">

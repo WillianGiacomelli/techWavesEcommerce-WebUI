@@ -3,7 +3,7 @@ import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProducBehaviorService {
 
 constructor() { }
   private _productSelected: WritableSignal<any> = signal(null);
