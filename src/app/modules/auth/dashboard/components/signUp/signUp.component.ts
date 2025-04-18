@@ -214,7 +214,6 @@ export class SignUpComponent {
   }
 
   onSubmit() {
-    console.log(this.form.value);
     if (this.form.valid) {
       console.log('Formulário válido:', this.form.value);
     } else {

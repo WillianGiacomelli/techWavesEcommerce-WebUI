@@ -6,9 +6,13 @@ import { NavbarComponent } from './components/header/components/navbar/navbar.co
 import { HeaderComponent } from './components/header/component/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/component/body.component';
-import { ProductComponent } from './components/body/components/product/product.component';
-import { CartComponent } from './components/cart/cart.component';
+import { CartComponent } from './components/cart/component/cart.component';
 import { SharedModule } from '../../shared/shared.module';
+import { EmptyCartComponent } from './components/cart/components/empty-cart/empty-cart.component';
+import { MainSectionComponent } from './components/header/components/main/main-section.component';
+import { ProductCardComponent } from './components/body/components/product/product-card.component';
+import { CartBehaviorService } from './state/cart.service';
+import { ProducBehaviorService } from './state/product.service';
 
 
 
@@ -19,13 +23,19 @@ import { SharedModule } from '../../shared/shared.module';
     NavbarComponent,
     FooterComponent,
     BodyComponent,
-    ProductComponent,
-    CartComponent
+    ProductCardComponent,
+    CartComponent,
+    EmptyCartComponent,
+    MainSectionComponent
   ],
   imports: [
     CommonModule,
     PublicRoutes,
-    SharedModule
+    SharedModule,
+  ],
+  providers: [
+    CartBehaviorService,
+    ProducBehaviorService
   ]
 })
 export class PublicModule { }

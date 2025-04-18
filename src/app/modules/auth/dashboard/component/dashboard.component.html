@@ -1,4 +1,4 @@
-<app-header />
+<app-header [isCartScreen]="false"/>
 @if(authBehaviorService.loginFormActivated() === 'login'){
   <app-login />
 }@else if (authBehaviorService.loginFormActivated() === 'signUp') {

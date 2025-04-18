@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { PublicModule } from './public/public.module';
 import { ModulesRoutes } from './modules.routing';
 
-
-
 @NgModule({
   declarations: [],
   imports: [
@@ -12,6 +10,6 @@ import { ModulesRoutes } from './modules.routing';
     ModulesRoutes,
     PublicModule
   ],
-  exports:[]
+  exports:[],
 })
 export class ModulesModule { }
