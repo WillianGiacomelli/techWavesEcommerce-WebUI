@@ -6,8 +6,8 @@ import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 export class CartBehaviorService {
   private _productsAdded: WritableSignal<any[]> = signal([]);
 
-  public getProductsAdded(): Signal<any[]>{
-    return this._productsAdded;
+  public getProductsAdded(): any[]{
+    return this._productsAdded();
   }
 
   public addProductToCart(product:any): void{

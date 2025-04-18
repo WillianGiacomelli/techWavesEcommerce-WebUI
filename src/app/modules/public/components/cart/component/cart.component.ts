@@ -16,11 +16,11 @@ export class CartComponent implements OnInit {
     public cartService: CartBehaviorService
   )
   {
-    console.log(this.cartService.getProductsAdded()());
+    console.log(this.cartService.getProductsAdded());
   }
 
   ngOnInit() {
-    console.log('CartComponent inicializado, produtos:', this.cartService.getProductsAdded()());
+    console.log('CartComponent inicializado, produtos:', this.cartService.getProductsAdded());
   }
 
   public navigateToHome():void{

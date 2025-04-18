@@ -1,13 +1,13 @@
 <app-header [isCartScreen]="true"/>
 <div class="mx-auto max-w-6xl h-auto min-h-150">
-  @if(cartService.getProductsAdded()().length > 0) {
+  @if(cartService.getProductsAdded().length > 0) {
     <div class="grid-cols-1 grid md:grid-cols-3 gap-5 my-5">
       <div class="md:col-span-2">
         <div class=" border border-gray-200 rounded-lg shadow-sm py-5 px-5">
           <p class="text-gray-600 font-bold text-md">
             Meu carrinho
           </p>
-          @for(item of cartService.getProductsAdded()(); track item.id) {
+          @for(item of cartService.getProductsAdded(); track item.id) {
             <div class="flex items-center justify-between mt-5">
               <div class="flex gap-3 items-center">
                 <img class="rounded-xl" src="{{item.image}}" height="200" width="100" alt="">
