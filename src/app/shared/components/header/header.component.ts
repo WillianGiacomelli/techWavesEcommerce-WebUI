@@ -9,4 +9,5 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
   @Input() isCartScreen: boolean = false;
+  @Input() isLoginScreenCameFromCartNotLoggedIn: boolean = false;
 }

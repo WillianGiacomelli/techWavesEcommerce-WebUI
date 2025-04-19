@@ -10,15 +10,13 @@ import { CartBehaviorService } from '../../../state/cart.service';
 })
 export class CartComponent implements OnInit {
   public isThereAnyItemInCart: boolean = true;
+  private _router: Router  = inject(Router);
+  public cartService: CartBehaviorService = inject(CartBehaviorService)
 
-  constructor(
-    private _router: Router,
-    public cartService: CartBehaviorService
-  )
-  {
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
+    if(!this.cartService.getProductsAdded()){
+      this.cartService.getCartItemsFromLocalStorage();
+    }
   }
 
   public navigateToHome():void{

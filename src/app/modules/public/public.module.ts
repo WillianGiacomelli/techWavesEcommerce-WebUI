@@ -13,8 +13,7 @@ import { MainSectionComponent } from './components/header/components/main/main-s
 import { ProductCardComponent } from './components/body/components/product/product-card.component';
 import { CartBehaviorService } from './state/cart.service';
 import { ProducBehaviorService } from './state/product.service';
-
-
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,8 @@ import { ProducBehaviorService } from './state/product.service';
     ProductCardComponent,
     CartComponent,
     EmptyCartComponent,
-    MainSectionComponent
+    MainSectionComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

@@ -16,6 +16,7 @@ export class ProductCardComponent {
 
   public navigateToProduct(id:number) : void{
     this.productService.setProductSelected(this.product);
+    localStorage.setItem("productSelected", JSON.stringify(this.product));
     this.router.navigate(['product', id]);
   }
 
