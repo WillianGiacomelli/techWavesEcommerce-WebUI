@@ -13,21 +13,21 @@ export class BodyComponent {
     {
       id:1,
       title: "Monitor gamer",
-      price: "R$2500",
+      price: 2500,
       description:"Monitor gamer Acer 180FPS",
       image: "https://img.freepik.com/fotos-gratis/vista-do-monitor-de-exibicao-de-video-do-computador_23-2150757345.jpg?semt=ais_hybrid"
     },
     {
       id:2,
       title: "Iphone 16",
-      price: "R$4600",
+      price: 4600,
       description:"Iphone 16 128GB",
       image: "https://img.freepik.com/fotos-gratis/vista-do-monitor-de-exibicao-de-video-do-computador_23-2150757345.jpg?semt=ais_hybrid"
     },
     {
       id:3,
       title: "Iphone 16",
-      price: "R$4600",
+      price: 4600,
       description:"Iphone 16 128GB",
       image: "https://img.freepik.com/fotos-gratis/vista-do-monitor-de-exibicao-de-video-do-computador_23-2150757345.jpg?semt=ais_hybrid"
     },

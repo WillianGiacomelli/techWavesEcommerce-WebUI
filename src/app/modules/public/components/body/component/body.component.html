@@ -4,7 +4,7 @@
     <h1 class="font-bold text-xl py-5">
       Headphones escolhidos para você
     </h1>
-    <div class="py-5 flex gap-5">
+    <div class="py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       @for(product of products; track product.id){
         <app-product [product]="product"/>
       }
