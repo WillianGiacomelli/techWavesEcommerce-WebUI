@@ -14,6 +14,29 @@ import { ProductCardComponent } from './components/body/components/product/produ
 import { CartBehaviorService } from './state/cart.service';
 import { ProducBehaviorService } from './state/product.service';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+import { IndexedDbService } from '../../core/utils/indexedDB/indexedDb.service';
+
+const dbConfig: DBConfig  = {
+  name: 'dataStore',
+  version: 1,
+  objectStoresMeta: [
+    {
+      store: 'productSelected',
+      storeConfig: { keyPath: 'id', autoIncrement: true },
+      storeSchema: [
+        { name: 'product', keypath: 'name', options: { unique: false } },
+      ]
+    },
+    {
+      store: 'cart',
+      storeConfig: { keyPath: 'id', autoIncrement: true },
+      storeSchema: [
+        { name: 'name', keypath: 'name', options: { unique: false } },
+      ]
+    }
+]
+};
 
 @NgModule({
   declarations: [
@@ -32,10 +55,12 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
     CommonModule,
     PublicRoutes,
     SharedModule,
+    NgxIndexedDBModule.forRoot(dbConfig)
   ],
   providers: [
     CartBehaviorService,
-    ProducBehaviorService
+    ProducBehaviorService,
+    IndexedDbService
   ]
 })
 export class PublicModule { }
