@@ -13,9 +13,9 @@ export class CartComponent implements OnInit {
   private _router: Router  = inject(Router);
   public cartService: CartBehaviorService = inject(CartBehaviorService)
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     if(!this.cartService.getProductsAdded()){
-      this.cartService.getCartItemsFromLocalStorage();
+      await this.cartService.getCartItemsFromIndexedDB();
     }
   }
 

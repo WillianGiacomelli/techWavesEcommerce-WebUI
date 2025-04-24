@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,16 +8,19 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 export class IndexedDbService {
   private _indexedDbService = inject(NgxIndexedDBService);
 
-  public addDataToTable(table: string, data: any): void {
-    this._indexedDbService.add(table, data).subscribe({
-      next: () => {},
-      error: () => {}
-    });
+  public addDataToTable$<T>(table: string, data: T): Observable<any> {
+    return this._indexedDbService.add(table, data);
   }
 
-  public getAllData(table:string): any{
-    this._indexedDbService.getAll(table).subscribe((data) => {
-      return data;
-    });
+  public getAllData$<T>(table:string): Observable<any>{
+    return this._indexedDbService.getAll(table);
+  }
+
+  public getByKey<T>(table: string, key: string): Observable<T> {
+    return this._indexedDbService.getByKey(table, key);
+  }
+
+  public updateData<T>(table: string, data: T): Observable<any> {
+    return this._indexedDbService.update(table, data);
   }
 }

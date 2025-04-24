@@ -21,9 +21,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       //   const id = Number(params.get('id'));
       // });
       if(!this.productService.getProductSelected()){
-        const localStorageProductSelectedString = localStorage.getItem("productSelected");
-        const localStorageProductSelectedObject = JSON.parse(localStorageProductSelectedString!);
-        this.productService.setProductSelected(localStorageProductSelectedObject);
+        this.productService.getCartItemsFromIndexedDB();
       }
 
       this.product = this.productService.getProductSelected();

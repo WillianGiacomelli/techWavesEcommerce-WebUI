@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit(): void {
     const person = { id: 1, name: 'John' };
-    this._indexedDbService.addDataToTable('people',person)
+    // this._indexedDbService.addDataToTable('people',person)
   }
 
 }

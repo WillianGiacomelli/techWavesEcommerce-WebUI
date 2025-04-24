@@ -8,14 +8,17 @@ import { CartBehaviorService } from '../../../../state/cart.service';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit{
+  public isThereAnyItemInCart: boolean = true;
   public isMenuOpen = false;
   public isDropdownOpened = false;
   public cartService = inject(CartBehaviorService);
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     if(!this.cartService.getProductsAdded()){
-      this.cartService.getCartItemsFromLocalStorage();
+      await this.cartService.getCartItemsFromIndexedDB();
     }
+
+    this.isThereAnyItemInCart = !!this.cartService.getProductsAdded()?.length;
   }
 
   toggleMenu() {

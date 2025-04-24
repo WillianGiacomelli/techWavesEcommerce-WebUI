@@ -1,4 +1,21 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { IndexedDbService } from '../../../core/utils/indexedDB/indexedDb.service';
+import { firstValueFrom } from 'rxjs';
+
+export interface Product {
+  id: number;
+  price: number;
+  amount: number;
+  totalPrice: number;
+  [key: string]: any;
+}
+
+export interface CartData {
+  id: string;
+  cartItems: Product[] | null;
+  amountOfProducts: number;
+  totalCartPrice: number;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +24,9 @@ export class CartBehaviorService {
   private _productsAdded: WritableSignal<any[] | null> = signal(null);
   private _amountOfProducts: WritableSignal<number> = signal(0);
   private _totalCartPrice:WritableSignal<number> = signal(0);
+  private _indexedDbService = inject(IndexedDbService);
+  private readonly CART_TABLE = 'cart';
+  private readonly CART_STATE_KEY = 'cart-state';
 
   public getProductsAdded(): any[] | null{
     return this._productsAdded();
@@ -20,22 +40,33 @@ export class CartBehaviorService {
     return this._totalCartPrice();
   }
 
-  public getCartItemsFromLocalStorage(): void{
-    const localStorageCartItemsString = localStorage.getItem("cartItems");
-    const localStorageCartItemsObj = JSON.parse(localStorageCartItemsString!);
-
-    this._amountOfProducts.set(localStorageCartItemsObj.amountOfProducts);
-    this._productsAdded.set(localStorageCartItemsObj.cartItems);
-    this._totalCartPrice.set(localStorageCartItemsObj.totalCartPrice);
+  public async getCartItemsFromIndexedDB(): Promise<void> {
+    try {
+      const cartData = await firstValueFrom(
+        this._indexedDbService.getByKey<CartData>(this.CART_TABLE, this.CART_STATE_KEY)
+      );
+      if (cartData) {
+        this._productsAdded.set(cartData.cartItems || null);
+        this._amountOfProducts.set(cartData.amountOfProducts || 0);
+        this._totalCartPrice.set(cartData.totalCartPrice || 0);
+      }
+    } catch (error) {
+      console.error('Error loading cart from IndexedDB:', error);
+    }
   }
 
-  public setCartIntoLocalStorage(): void{
-    let cart = {
-      cartItems: this._productsAdded(),
-      amountOfProducts: this._amountOfProducts(),
-      totalCartPrice: this._totalCartPrice()
+  private async _setCartIntoIndexedDB(): Promise<void> {
+    try {
+      const cartData: CartData = {
+        id: this.CART_STATE_KEY,
+        cartItems: this._productsAdded(),
+        amountOfProducts: this._amountOfProducts(),
+        totalCartPrice: this._totalCartPrice()
+      };
+      await firstValueFrom(this._indexedDbService.updateData(this.CART_TABLE, cartData));
+    } catch (error) {
+      console.error('Error saving cart to IndexedDB:', error);
     }
-    localStorage.setItem("cartItems", JSON.stringify(cart));
   }
 
   public calculateTotalPriceOfCart(): void {
@@ -54,7 +85,7 @@ export class CartBehaviorService {
 
     this._productsAdded.set(updatedProducts);
     this._amountOfProducts.set(this._amountOfProducts() - 1);
-    this.setCartIntoLocalStorage();
+    this._setCartIntoIndexedDB();
   }
 
   public removeOneItemFromAmount(productId:any): void{
@@ -71,7 +102,7 @@ export class CartBehaviorService {
       this._productsAdded.set(updatedProducts);
       this._amountOfProducts.set(this._amountOfProducts() - 1);
       this.calculateTotalPriceOfCart();
-      this.setCartIntoLocalStorage();
+      this._setCartIntoIndexedDB();
     };
   }
 
@@ -95,7 +126,7 @@ export class CartBehaviorService {
       this._amountOfProducts.set(this._amountOfProducts() + 1);
     }
     this.calculateTotalPriceOfCart();
-    this.setCartIntoLocalStorage();
+    this._setCartIntoIndexedDB();
   }
 
 }
