@@ -1,3 +1,4 @@
+import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
