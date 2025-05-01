@@ -1,8 +1,8 @@
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './component/dashboard.component';
-import { CartComponent } from './components/cart/component/cart.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { BodyComponent } from './components/body/component/body.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CartComponent } from './pages/cart/component/cart.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 const routes: Routes = [
   {

@@ -31,5 +31,12 @@ export class BodyComponent {
       description:"Iphone 16 128GB",
       image: "https://img.freepik.com/fotos-gratis/vista-do-monitor-de-exibicao-de-video-do-computador_23-2150757345.jpg?semt=ais_hybrid"
     },
+    {
+      id:4,
+      title: "Iphone 16",
+      price: 4600,
+      description:"Iphone 16 128GB",
+      image: "https://img.freepik.com/fotos-gratis/vista-do-monitor-de-exibicao-de-video-do-computador_23-2150757345.jpg?semt=ais_hybrid"
+    },
   ];
 }

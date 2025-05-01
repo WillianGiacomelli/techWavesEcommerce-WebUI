@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProducBehaviorService } from '../../../../state/product.service';
+import { ProducBehaviorService } from '../../../../../../state/product.service';
 
 @Component({
   selector: 'app-product',
