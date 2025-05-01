@@ -17,6 +17,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CartComponent } from './pages/cart/component/cart.component';
 import { EmptyCartComponent } from './pages/cart/components/empty-cart/empty-cart.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
+import { CarouselComponent } from './components/body/components/carousel/component/carousel.component';
+import { SeeAlsoComponent } from './components/body/components/see-also/see-also.component';
 
 const dbConfig: DBConfig  = {
   name: 'dataStore',
@@ -52,6 +54,8 @@ const dbConfig: DBConfig  = {
     MainSectionComponent,
     ProductDetailComponent,
     OffersComponent,
+    CarouselComponent,
+    SeeAlsoComponent
   ],
   imports: [
     CommonModule,
