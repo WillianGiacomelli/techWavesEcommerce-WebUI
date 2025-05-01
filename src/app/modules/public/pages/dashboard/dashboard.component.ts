@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { IndexedDbService } from '../../../core/utils/indexedDB/indexedDb.service';
+import { IndexedDbService } from '../../../../core/utils/indexedDB/indexedDb.service';
 
 @Component({
   selector: 'app-dashboard',

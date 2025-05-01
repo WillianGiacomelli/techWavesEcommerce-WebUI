@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './component/dashboard.component';
 import { PublicRoutes } from './public.routing';
 import { NavbarComponent } from './components/header/components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/component/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BodyComponent } from './components/body/component/body.component';
-import { CartComponent } from './components/cart/component/cart.component';
 import { SharedModule } from '../../shared/shared.module';
-import { EmptyCartComponent } from './components/cart/components/empty-cart/empty-cart.component';
 import { MainSectionComponent } from './components/header/components/main/main-section.component';
-import { ProductCardComponent } from './components/body/components/product/product-card.component';
 import { CartBehaviorService } from './state/cart.service';
 import { ProducBehaviorService } from './state/product.service';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
 import { IndexedDbService } from '../../core/utils/indexedDB/indexedDb.service';
+import { OffersComponent } from './components/body/components/offers/offers.component';
+import { ProductCardComponent } from './components/body/components/carousel/components/product/product-card.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { CartComponent } from './pages/cart/component/cart.component';
+import { EmptyCartComponent } from './pages/cart/components/empty-cart/empty-cart.component';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 const dbConfig: DBConfig  = {
   name: 'dataStore',
@@ -49,7 +50,8 @@ const dbConfig: DBConfig  = {
     CartComponent,
     EmptyCartComponent,
     MainSectionComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    OffersComponent,
   ],
   imports: [
     CommonModule,
