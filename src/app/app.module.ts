@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +44,7 @@ export const MY_DATE_FORMATS = {
     { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+    { provide:  DEFAULT_CURRENCY_CODE, useValue: 'BRL'},
     provideHttpClient(),
   ],
   bootstrap: [AppComponent]

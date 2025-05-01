@@ -23,8 +23,13 @@
               </svg>
             </a>
           </div>
-          <div class="md:cursor-pointer">
-            <a href="/cart">
+          <div class="md:cursor-pointer relative">
+            <a routerLink="/cart">
+              @if(cartService.getAmountOfProducts() > 0){
+                <span class="absolute top-0 left-0 inline-flex items-center justify-center w-3 h-3 p-3 text-sm font-medium bg-green-100 text-green-800 text-xs rounded-full -translate-x-1/2 -translate-y-1/2">
+                  {{cartService.getAmountOfProducts()}}
+                </span>
+              }
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-white  ">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
               </svg>
@@ -71,13 +76,13 @@
               </button>
             </li>
             <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-400 md:p-0 ">Computadores</a>
+                <a routerLink="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-400 md:p-0 ">Computadores</a>
             </li>
             <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-400 md:p-0 ">Teclados</a>
+                <a routerLink="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-400 md:p-0 ">Teclados</a>
             </li>
             <li>
-                <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-400 md:p-0 ">Headphones</a>
+                <a routerLink="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-400 md:p-0 ">Headphones</a>
             </li>
         </ul>
       </div>
@@ -105,13 +110,13 @@
           </button>
         </li>
         <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100">Computadores</a>
+          <a routerLink="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100">Computadores</a>
         </li>
         <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100">Teclados</a>
+          <a routerLink="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100">Teclados</a>
         </li>
         <li>
-          <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100">Headphones</a>
+          <a routerLink="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100">Headphones</a>
         </li>
       </ul>
     </div>
@@ -122,34 +127,34 @@
         <div class="grid px-4 py-5  text-gray-900 sm:grid-cols-2 md:px-6">
             <ul>
                 <li>
-                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">
+                    <a routerLink="#" class="block p-3 rounded-lg hover:bg-gray-100">
                         <div class="font-semibold">Online Stores</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">
+                    <a routerLink="#" class="block p-3 rounded-lg hover:bg-gray-100">
                         <div class="font-semibold">Segmentation</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">
+                    <a routerLink="#" class="block p-3 rounded-lg hover:bg-gray-100">
                         <div class="font-semibold">Marketing CRM</div>
                     </a>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">
+                    <a routerLink="#" class="block p-3 rounded-lg hover:bg-gray-100">
                         <div class="font-semibold">Online Stores</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">
+                    <a routerLink="#" class="block p-3 rounded-lg hover:bg-gray-100">
                         <div class="font-semibold">Segmentation</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="block p-3 rounded-lg hover:bg-gray-100">
+                    <a routerLink="#" class="block p-3 rounded-lg hover:bg-gray-100">
                         <div class="font-semibold">Marketing CRM</div>
                     </a>
                 </li>

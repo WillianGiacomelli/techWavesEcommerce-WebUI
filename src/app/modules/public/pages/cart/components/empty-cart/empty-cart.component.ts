@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-cart',
+  selector: 'app-empty-cart',
   standalone: false,
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  templateUrl: './empty-cart.component.html',
+  styleUrl: './empty-cart.component.scss'
 })
-export class CartComponent {
+export class EmptyCartComponent {
   constructor(private _router: Router){
 
   }
