@@ -7,9 +7,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DateOnlyDirectiveDirective } from '../../../../../core/directives/DateOnlyDirective.directive';
-import { CepHttpService } from '../../services/http/cep-http.service';
 import { ToastrService } from 'ngx-toastr';
+import { CepHttpService } from '../../services/http/cep-http.service';
 
 @Component({
   selector: 'app-signUp',
@@ -18,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./signUp.component.scss'],
 })
 export class SignUpComponent {
+  isLoadingCEP: boolean = false;
   form: FormGroup;
   maxDate: Date;
   minDate: Date;
@@ -89,7 +89,17 @@ export class SignUpComponent {
         if (value) {
           const maskedValue = this.maskCep(value);
           cepControl.setValue(maskedValue, { emitEvent: false });
+          return;
         }
+
+        this.form.patchValue({
+          state: null,
+          city: null,
+          neighborhood: null,
+          address: null,
+          complement: null,
+        });
+
       });
     }
   }
@@ -181,6 +191,8 @@ export class SignUpComponent {
 
     if (cep.length != 9 || !!this.form.get('state')?.value) return;
 
+    this.isLoadingCEP = true;
+
     this._cepHttpService.getAdrressByCEP(cep).subscribe({
       next: (data) => {
         if (data) {
@@ -200,6 +212,9 @@ export class SignUpComponent {
             this.form.get('address')?.enable();
           }
         }
+      },
+      complete:() =>{
+        this.isLoadingCEP = false;
       },
       error: (error) => {
         this._toastr.error('Erro ao consultar o CEP. Tente novamente.');

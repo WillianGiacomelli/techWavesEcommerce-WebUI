@@ -1,5 +1,5 @@
 import { Component, inject, OnDestroy } from '@angular/core';
-import { AuthBehaviorService } from '../services/behavior/auth-behavior.service';
+import { AuthBehaviorService } from '../../services/behavior/auth-behavior.service';
 
 @Component({
   selector: 'app-dashboard',

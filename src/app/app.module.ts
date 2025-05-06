@@ -11,6 +11,7 @@ import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ToastrModule } from 'ngx-toastr';
 
@@ -32,12 +33,13 @@ export const MY_DATE_FORMATS = {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+  AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    NgxSkeletonLoaderModule,
     ToastrModule.forRoot(),
   ],
   providers: [
