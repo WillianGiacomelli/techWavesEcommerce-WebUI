@@ -10,6 +10,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { CepHttpService } from '../../services/http/cep-http.service';
 import { SignUpModel } from '../../../../core/models/signUp/signUp.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-signUp',
@@ -37,7 +38,7 @@ export class SignUpComponent {
     this.form = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', [Validators.required, Validators.minLength(3)]],
-      cpf: ['', [Validators.required, this.validateCPF]],
+      cpf: ['', [Validators.required, this._validateCPF]],
       birthDate: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       cellphone: ['', [Validators.required]],
@@ -54,63 +55,62 @@ export class SignUpComponent {
   }
 
   ngOnInit(): void {
-    this.applyCpfMask();
-    this.applyCellphoneMask();
-    this.applyCepMask();
-    this.applyInputDateMask();
+    this._applyCpfMask();
+    this._applyCellphoneMask();
+    this._applyCepMask();
+    this._applyInputDateMask();
   }
 
-  applyInputDateMask(): void {
+  private _applyInputDateMask(): void {
     const dateControl = this.form.get('birthDate');
     if (dateControl) {
       dateControl.valueChanges.subscribe((value) => {
         if (value && typeof value === 'string') {
-          // Apply mask only for manual text input
-          const maskedValue = this.maskDate(value);
+          const maskedValue = this._maskDate(value);
           dateControl.setValue(maskedValue, { emitEvent: false });
         }
       });
     }
   }
 
-  onDateChange(event: any): void {
+  public onDateChange(event: any): void {
     const date = event.value;
     if (date instanceof Date) {
-      const formattedDate = this.formatDate(date);
+      const formattedDate = this._formatDate(date);
       this.form.get('birthDate')?.setValue(formattedDate, { emitEvent: false });
     }
   }
 
-  applyCpfMask(): void {
+  private _applyCpfMask(): void {
     const cpfControl = this.form.get('cpf');
     if (cpfControl) {
       cpfControl.valueChanges.subscribe((value) => {
         if (value) {
-          const maskedValue = this.maskCpf(value);
+          const maskedValue = this._maskCpf(value);
           cpfControl.setValue(maskedValue, { emitEvent: false });
         }
       });
     }
   }
 
-  applyCellphoneMask(): void {
+  private _applyCellphoneMask(): void {
     const cellphoneControl = this.form.get('cellphone');
     if (cellphoneControl) {
       cellphoneControl.valueChanges.subscribe((value) => {
         if (value) {
-          const maskedValue = this.maskCellphone(value);
+          const maskedValue = this._maskCellphone(value);
           cellphoneControl.setValue(maskedValue, { emitEvent: false });
         }
       });
     }
   }
 
-  applyCepMask(): void {
+  private _applyCepMask(): void {
     const cepControl = this.form.get('cep');
     if (cepControl) {
       cepControl.valueChanges.subscribe((value) => {
         if (value) {
-          const maskedValue = this.maskCep(value);
+          const maskedValue = this._maskCep(value);
           cepControl.setValue(maskedValue, { emitEvent: false });
           return;
         }
@@ -127,7 +127,7 @@ export class SignUpComponent {
     }
   }
 
-  maskCpf(value: string): string {
+  private _maskCpf(value: string): string {
     return value
       .replace(/\D/g, '')
       .replace(/(\d{3})(\d)/, '$1.$2')
@@ -136,7 +136,7 @@ export class SignUpComponent {
       .slice(0, 14);
   }
 
-  maskCellphone(value: string): string {
+  private _maskCellphone(value: string): string {
     return value
       .replace(/\D/g, '')
       .replace(/(\d{2})(\d)/, '($1) $2')
@@ -144,14 +144,14 @@ export class SignUpComponent {
       .slice(0, 15);
   }
 
-  maskCep(value: string): string {
+  private _maskCep(value: string): string {
     return value
       .replace(/\D/g, '')
       .replace(/(\d{5})(\d)/, '$1-$2')
       .slice(0, 9);
   }
 
-  maskDate(value: string): string {
+  private _maskDate(value: string): string {
     const cleanValue = String(value).replace(/\D/g, '');
     return cleanValue
       .replace(/(\d{2})(\d)/, '$1/$2')
@@ -159,7 +159,7 @@ export class SignUpComponent {
       .slice(0, 10);
   }
 
-  validateCPF(control: { value: string }) {
+  private _validateCPF(control: { value: string }) {
     const cpf = control.value.replace(/\D/g, '');
 
     if (cpf.length !== 11 || !/^\d{11}$/.test(cpf)) {
@@ -197,7 +197,7 @@ export class SignUpComponent {
     return null;
   }
 
-  validateDateFormat(control: { value: string }) {
+  public validateDateFormat(control: { value: string }) {
     const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})$/;
     if (!control.value || !datePattern.test(control.value)) {
       return { invalidDateFormat: true };
@@ -214,7 +214,7 @@ export class SignUpComponent {
     return null;
   }
 
-  formatDate(date: Date | string): string {
+  private _formatDate(date: Date | string): string {
     if (!date) return '';
     const d = date instanceof Date ? date : new Date(date);
     if (isNaN(d.getTime())) return '';
@@ -260,84 +260,9 @@ export class SignUpComponent {
     });
   }
 
-  adjustData() {
-    const birthDate = this.form.get('birthDate')?.value;
-    if (birthDate) {
-      const formattedDate = this.formatDate(birthDate);
-      this.form.patchValue({
-        birthDate: formattedDate,
-      }, { emitEvent: false });
+  onSubmit() {
+    if (this.form.valid) {
+      let data = new SignUpModel(this.form.value);
     }
   }
-
-  export class SignUpModel{
-    private formData: any;
-
-    constructor(formData: any) {
-      this.formData = formData;
-    }
-
-    private cleanMask(value: string): string {
-      return value.replace(/\D/g, '');
-    }
-
-    private convertBirthDate(birthDate: string | Date | null): string | null {
-      if (!birthDate) return null;
-
-      let date: Date;
-
-      // Caso birthDate seja uma string (ex.: "05/05/2007")
-      if (typeof birthDate === 'string') {
-        const [day, month, year] = birthDate.split('/').map(Number);
-        date = new Date(year, month - 1, day);
-      }
-      // Caso birthDate seja um objeto Date
-      else if (birthDate instanceof Date) {
-        date = birthDate;
-      }
-      // Caso seja um tipo inválido
-      else {
-        throw new Error('Formato de data de nascimento inválido.');
-      }
-
-      // Validar a data
-      if (isNaN(date.getTime())) {
-        throw new Error('Data de nascimento inválida.');
-      }
-
-      return date.toISOString(); // ex.: "2007-05-05T00:00:00.000Z"
-    }
-
-    public mapToBackendFormat(): any {
-      try {
-        const birthDate = this.convertBirthDate(this.formData.birthDate);
-
-        return {
-          person: {
-            name: this.formData.name,
-            lastName: this.formData.lastName,
-            cpf: this.cleanMask(this.formData.cpf),
-            birthDate: birthDate,
-            gender: this.formData.gender,
-          },
-          contact: {
-            cellphone: this.cleanMask(this.formData.cellphone),
-          },
-          address: {
-            cep: this.cleanMask(this.formData.cep),
-            address: this.formData.address,
-            number: this.formData.number,
-            complement: this.formData.complement,
-          },
-          login: {
-            email: this.formData.email,
-            password: this.formData.password,
-          },
-        };
-      } catch (error: any) {
-        throw new Error(error.message);
-      }
-    }
-  }
-
 }

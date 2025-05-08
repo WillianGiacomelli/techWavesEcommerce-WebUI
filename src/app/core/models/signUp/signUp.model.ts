@@ -1,39 +1,43 @@
-export class SignUpModel{
-  private formData: any;
+import { CreateFormModel } from "./createForm.model";
+import * as moment from 'moment';
 
-  constructor(formData: any) {
+export class SignUpModel{
+  private formData: CreateFormModel;
+
+  constructor(formData: CreateFormModel) {
     this.formData = formData;
+    let data = this.mapToBackendFormat();
+
+    return data;
   }
 
   private cleanMask(value: string): string {
     return value.replace(/\D/g, '');
   }
 
-  private convertBirthDate(birthDate: string | Date | null): string | null {
+  private convertBirthDate(birthDate: any): string | null {
+    let momentDate: moment.Moment;
+
     if (!birthDate) return null;
 
     let date: Date;
 
-    // Caso birthDate seja uma string (ex.: "05/05/2007")
     if (typeof birthDate === 'string') {
       const [day, month, year] = birthDate.split('/').map(Number);
       date = new Date(year, month - 1, day);
     }
-    // Caso birthDate seja um objeto Date
     else if (birthDate instanceof Date) {
       date = birthDate;
     }
-    // Caso seja um tipo inválido
+    else if(moment.isMoment(birthDate)){
+      momentDate = birthDate;
+      date = momentDate.toDate();
+    }
     else {
       throw new Error('Formato de data de nascimento inválido.');
     }
 
-    // Validar a data
-    if (isNaN(date.getTime())) {
-      throw new Error('Data de nascimento inválida.');
-    }
-
-    return date.toISOString(); // ex.: "2007-05-05T00:00:00.000Z"
+    return date.toISOString();
   }
 
   public mapToBackendFormat(): any {
