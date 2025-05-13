@@ -263,6 +263,7 @@ export class SignUpComponent {
   onSubmit() {
     if (this.form.valid) {
       let data = new SignUpModel(this.form.value);
+      console.log(data)
     }
   }
 }
