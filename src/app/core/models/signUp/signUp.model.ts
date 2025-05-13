@@ -47,10 +47,10 @@ export class SignUpModel{
       return {
         person: {
           name: this.formData.name,
-          lastName: this.formData.lastName,
+          middleName: this.formData.lastName,
           cpf: this.cleanMask(this.formData.cpf),
           birthDate: birthDate,
-          gender: this.formData.gender,
+          sex: this.formData.gender == "Male" ? "M" : "F",
         },
         contact: {
           cellphone: this.cleanMask(this.formData.cellphone),
