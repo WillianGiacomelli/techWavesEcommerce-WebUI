@@ -53,12 +53,15 @@ export class SignUpModel{
           sex: this.formData.gender == "Male" ? "M" : "F",
         },
         contact: {
-          cellphone: this.cleanMask(this.formData.cellphone),
+          cellPhone: this.cleanMask(this.formData.cellphone),
         },
         address: {
           cep: this.cleanMask(this.formData.cep),
-          address: this.formData.address,
+          street: this.formData.address,
           number: this.formData.number,
+          city: this.formData.city,
+          neighborhood: this.formData.neighborhood,
+          state: this.formData.state,
           complement: this.formData.complement,
         },
         login: {

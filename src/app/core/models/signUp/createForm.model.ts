@@ -7,6 +7,9 @@ export class CreateFormModel{
   cellphone!: string;
   cep!: string;
   address!: string;
+  city!: string;
+  state!: string;
+  neighborhood!: string;
   number!: string;
   complement!: string;
   email!: string;
