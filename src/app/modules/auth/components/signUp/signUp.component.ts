@@ -8,9 +8,10 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { CepHttpService } from '../../services/http/cep-http.service';
+import { CepHttpService } from '../../services/http/cep/cep-http.service';
 import { SignUpModel } from '../../../../core/models/signUp/signUp.model';
 import * as moment from 'moment';
+import { CustomerHtppService } from '../../services/http/customer-http.service';
 
 @Component({
   selector: 'app-signUp',
@@ -27,6 +28,7 @@ export class SignUpComponent {
   public fb: FormBuilder = inject(FormBuilder);
   private _cepHttpService: CepHttpService = inject(CepHttpService);
   private _toastr: ToastrService = inject(ToastrService);
+  private _customerHttpService: CustomerHtppService = inject(CustomerHtppService);
 
   constructor() {
     const today = new Date();
@@ -43,9 +45,9 @@ export class SignUpComponent {
       gender: ['', [Validators.required]],
       cellphone: ['', [Validators.required]],
       cep: ['', [Validators.required]],
-      city: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      state: new FormControl({ value: '', disabled: true }, [Validators.required]),
-      neighborhood: new FormControl({ value: '', disabled: true }, [Validators.required]),
+      city: ['',  [Validators.required]],
+      state:['', [Validators.required]],
+      neighborhood: [ '', [Validators.required]],
       address: ['', [Validators.required]],
       number: ['', [Validators.required]],
       complement: [''],
@@ -262,8 +264,19 @@ export class SignUpComponent {
 
   onSubmit() {
     if (this.form.valid) {
+      console.log(this.form.value);
       let data = new SignUpModel(this.form.value);
-      console.log(data)
+      this._customerHttpService.create(data).subscribe({
+        next: (response) => {
+          if (response) {
+            this._toastr.success('Cadastro realizado com sucesso!');
+            this.form.reset();
+          }
+        },
+        error: (error) => {
+            this._toastr.error(error.error.message);
+        },
+      });
     }
   }
 }

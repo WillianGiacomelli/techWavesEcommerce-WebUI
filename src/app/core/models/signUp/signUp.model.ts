@@ -46,23 +46,23 @@ export class SignUpModel{
 
       return {
         person: {
-          name: this.formData.name,
-          middleName: this.formData.lastName,
+          name: this.capitalizeFirstLetter(this.formData.name),
+          middleName: this.capitalizeFirstLetter(this.formData.lastName),
           cpf: this.cleanMask(this.formData.cpf),
           birthDate: birthDate,
-          sex: this.formData.gender == "Male" ? "M" : "F",
+          gender: this.formData.gender == "Male" ? "M" : "F",
         },
         contact: {
           cellPhone: this.cleanMask(this.formData.cellphone),
         },
         address: {
           cep: this.cleanMask(this.formData.cep),
-          street: this.formData.address,
+          street: this.capitalizeFirstLetter(this.formData.address),
           number: this.formData.number,
-          city: this.formData.city,
-          neighborhood: this.formData.neighborhood,
-          state: this.formData.state,
-          complement: this.formData.complement,
+          city: this.capitalizeFirstLetter(this.formData.city),
+          neighborhood: this.capitalizeFirstLetter(this.formData.neighborhood),
+          state: this.formData.state.toUpperCase(),
+          complement: this.capitalizeFirstLetter(this.formData.complement),
         },
         login: {
           email: this.formData.email,
@@ -72,5 +72,8 @@ export class SignUpModel{
     } catch (error: any) {
       throw new Error(error.message);
     }
+  }
+  capitalizeFirstLetter(name: string) {
+    return name.charAt(0).toUpperCase() + name.slice(1);
   }
 }
