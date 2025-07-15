@@ -46,23 +46,23 @@ export class SignUpModel{
 
       return {
         person: {
-          name: this.capitalizeFirstLetter(this.formData.name),
-          middleName: this.capitalizeFirstLetter(this.formData.lastName),
-          cpf: this.cleanMask(this.formData.cpf),
+          name: this.capitalizeFirstLetter(this.formData.name!),
+          middleName: this.capitalizeFirstLetter(this.formData.lastName!),
+          cpf: this.cleanMask(this.formData.cpf!),
           birthDate: birthDate,
           gender: this.formData.gender == "Male" ? "M" : "F",
         },
         contact: {
-          cellPhone: this.cleanMask(this.formData.cellphone),
+          cellPhone: this.cleanMask(this.formData.cellphone!),
         },
         address: {
-          cep: this.cleanMask(this.formData.cep),
-          street: this.capitalizeFirstLetter(this.formData.address),
+          cep: this.cleanMask(this.formData.cep!),
+          street: this.capitalizeFirstLetter(this.formData.address!),
           number: this.formData.number,
-          city: this.capitalizeFirstLetter(this.formData.city),
-          neighborhood: this.capitalizeFirstLetter(this.formData.neighborhood),
-          state: this.formData.state.toUpperCase(),
-          complement: this.capitalizeFirstLetter(this.formData.complement),
+          city: this.capitalizeFirstLetter(this.formData.city!),
+          neighborhood: this.capitalizeFirstLetter(this.formData.neighborhood!),
+          state: this.formData.state == undefined ? "" : this.formData.state.toUpperCase(),
+          complement: this.capitalizeFirstLetter(this.formData.complement!),
         },
         login: {
           email: this.formData.email,

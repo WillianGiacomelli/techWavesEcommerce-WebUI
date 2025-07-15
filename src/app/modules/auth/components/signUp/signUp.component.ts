@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CepHttpService } from '../../services/http/cep/cep-http.service';
 import { SignUpModel } from '../../../../core/models/signUp/signUp.model';
@@ -21,11 +21,10 @@ import { CustomerHtppService } from '../../services/http/customer-http.service';
 })
 export class SignUpComponent {
   isLoadingCEP: boolean = false;
-  form: FormGroup;
   maxDate: Date;
   minDate: Date;
 
-  public fb: FormBuilder = inject(FormBuilder);
+  public fb: NonNullableFormBuilder = inject(NonNullableFormBuilder);
   private _cepHttpService: CepHttpService = inject(CepHttpService);
   private _toastr: ToastrService = inject(ToastrService);
   private _customerHttpService: CustomerHtppService = inject(CustomerHtppService);
@@ -36,25 +35,25 @@ export class SignUpComponent {
     const minYear = today.getFullYear() - 100;
     this.maxDate = new Date(maxYear, today.getMonth(), today.getDate());
     this.minDate = new Date(minYear, today.getMonth(), today.getDate());
-
-    this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', [Validators.required, Validators.minLength(3)]],
-      cpf: ['', [Validators.required, this._validateCPF]],
-      birthDate: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
-      cellphone: ['', [Validators.required]],
-      cep: ['', [Validators.required]],
-      city: ['',  [Validators.required]],
-      state:['', [Validators.required]],
-      neighborhood: [ '', [Validators.required]],
-      address: ['', [Validators.required]],
-      number: ['', [Validators.required]],
-      complement: [''],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9@#$%^&+=!]{6,}$')]],
-    });
   }
+
+  protected form = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(3)]],
+    lastName: ['', [Validators.required, Validators.minLength(3)]],
+    cpf: ['', [Validators.required, this._validateCPF]],
+    birthDate: ['', [Validators.required]],
+    gender: ['', [Validators.required]],
+    cellphone: ['', [Validators.required]],
+    cep: ['', [Validators.required]],
+    city: ['',  [Validators.required]],
+    state:['', [Validators.required]],
+    neighborhood: [ '', [Validators.required]],
+    address: ['', [Validators.required]],
+    number: ['', [Validators.required]],
+    complement: [''],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9@#$%^&+=!]{6,}$')]],
+  });
 
   ngOnInit(): void {
     this._applyCpfMask();
@@ -118,11 +117,11 @@ export class SignUpComponent {
         }
 
         this.form.patchValue({
-          state: null,
-          city: null,
-          neighborhood: null,
-          address: null,
-          complement: null,
+          state: "",
+          city: "",
+          neighborhood: "",
+          address: "",
+          complement: "",
         });
 
       });
@@ -229,11 +228,11 @@ export class SignUpComponent {
   public getAddressByCEP(): void {
     const cep = this.form.get('cep')?.value;
 
-    if (cep.length != 9 || !!this.form.get('state')?.value) return;
+    if (!cep || cep.length != 9 || !!this.form.get('state')?.value) return;
 
     this.isLoadingCEP = true;
 
-    this._cepHttpService.getAdrressByCEP(cep).subscribe({
+    this._cepHttpService.getAdrressByCEP(cep!).subscribe({
       next: (data) => {
         if (data) {
           if (data.erro == 'true') {
